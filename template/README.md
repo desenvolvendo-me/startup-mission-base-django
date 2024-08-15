@@ -8,7 +8,7 @@ Para o desenvolvimento do site, foi selecionada uma paleta de cores análogas, c
 
 <div align="center">
     <img alt="A imagem refere-se a uma paleta de cores que abrange uma gama de tons que variam desde o rosa, passando pelo roxo, até o azul, complementados por nuances de branco." height="110" src="../template/image/color-palette..png">
-    <img alt="A imagem refere-se a uma paleta de cores que abrange as cores verde e vermelho." height="110" src="../template/image/analogous-colors..png">
+    <img alt="A imagem refere-se a uma paleta de cores que abrange as cores verde e vermeho." height="110" src="../template/image/analogous-colors..png">
 </div>
 
 A paleta abrange uma gama de tons que variam desde o rosa, passando pelo roxo, até o azul, complementados por nuances de branco. As cores selecionadas são:
@@ -20,11 +20,15 @@ A paleta abrange uma gama de tons que variam desde o rosa, passando pelo roxo, a
 
 As escolhas de cores foram cuidadosamente avaliadas para garantir conformidade com as diretrizes de acessibilidade, assegurando que todos os usuários tenham uma experiência visual adequada. Testes de acessibilidade foram realizados com base nas diretrizes WCAG (Web Content Accessibility Guidelines) para garantir que o design atenda aos padrões recomendados.
 
+## Tipografia
+
+A tipografia "Open Sans" foi selecionada para o projeto devido às suas características de legibilidade e versatilidade. Esta fonte sans-serif é amplamente reconhecida por seu design limpo e moderno, o que a torna ideal para uma ampla gama de aplicações digitais.
+
 ## Diretrizes e Regras de Estilo
 
 As diretrizes a seguir visam assegurar uma aplicação consistente e acessível das cores selecionadas no projeto, respeitando as variações tonais permitidas:
 
-Paleta de Cores Principal:
+### Paleta de Cores Principal:
 
 1. #D90DA2 (Rosa), #BF17B4 e #9D21BF (Roxo):
 - Aplicação: Devem ser usadas para elementos que exigem destaque, como botões, ícones de ação e outros elementos interativos.
@@ -46,8 +50,36 @@ Paleta de Cores Principal:
 - Variações: Podem ser usadas em tons mais claros ou escuros para destacar diferentes níveis de importância ou urgência.
 - Conformidade: Verifique sempre o contraste para garantir que o uso dessas cores em fundos claros ou escuros mantenha a acessibilidade visual e a eficácia da comunicação.
 
+### Fonte Principal
+
+1. Aplicação Geral:
+
+- Fonte: Open Sans
+- Estilos Disponíveis: Regular, Italic, Bold, e Bold Italic
+- Tamanhos de Fonte:
+    - Texto Normal: 16px
+    - Cabeçalhos (H1-H6): Gradualmente maiores a partir de 32px para H1 até 18px para H6
+    - Textos de Subtítulo e Legenda: 14px e 12px, respectivamente
+
+2. Propriedades de Texto:
+- Espaçamento de Linha: 1.5x do tamanho da fonte para melhorar a legibilidade
+- Espaçamento entre Letras: Normal, sem ajustes adicionais a menos que especificado
+- Alinhamento: Justificado para parágrafos e alinhamento à esquerda para textos menores e elementos interativos
+
+3. Estilos de Fonte:
+- Negrito (Bold): Utilizado para destacar elementos importantes como títulos e subtítulos
+- Itálico (Italic): Usado para ênfase em palavras e frases, como citações e termos técnicos
+- Regular: Usado para o corpo do texto e a maioria das informações
+
+4. Contraste e Legibilidade:
+- Textos em Tamanhos Menores: Garantir que a legibilidade seja mantida mesmo em tamanhos reduzidos, ajustando o espaçamento e o contraste conforme necessário.
+
+5. Exceções e Variedades:
+- Uso Moderado: Para evitar sobrecarregar o design, utilizar estilos diferentes (negrito e itálico) com moderação.
+- Consistência: Manter consistência na aplicação dos estilos em todo o projeto para criar uma aparência coesa.
+
 ## Recursos e Ferramentas
 
 - [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/): Ferramenta utilizada para verificar a conformidade de contraste com as diretrizes de acessibilidade WCAG, assegurando que a combinação de cores no design atenda aos padrões de legibilidade.
 - [Adobe Color](https://color.adobe.com/pt/create/image): Ferramenta utilizada para criar e ajustar paletas de cores, permitindo a harmonização das tonalidades de forma eficaz e visualmente atraente.
-
+- [Google Fonts](https://fonts.google.com/): Ferramenta utilizada para a seleção e verificação da fonte, permitindo testar diferentes estilos e tamanhos.
