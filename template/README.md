@@ -1,0 +1,53 @@
+# Guia de Estilo de UI/UX
+
+O propósito desta documentação é fornecer diretrizes abrangentes e estruturadas para a seleção e aplicação de cores, tipografia e bibliotecas no projeto. O objetivo é garantir que todos os elementos visuais sejam visualmente atraentes e atendam aos padrões de qualidade e acessibilidade estabelecidos.
+
+## Paleta de Cores
+
+Para o desenvolvimento do site, foi selecionada uma paleta de cores análogas, complementada por uma cor adicional para aumentar o contraste. Essa combinação utiliza três cores vizinhas no círculo cromático, proporcionando uma harmonia visual suave, enquanto a cor complementar cria um contraste mais acentuado.
+
+<div align="center">
+    <img alt="A imagem refere-se a uma paleta de cores que abrange uma gama de tons que variam desde o rosa, passando pelo roxo, até o azul, complementados por nuances de branco." height="110" src="../template/image/color-palette..png">
+    <img alt="A imagem refere-se a uma paleta de cores que abrange as cores verde e vermelho." height="110" src="../template/image/analogous-colors..png">
+</div>
+
+A paleta abrange uma gama de tons que variam desde o rosa, passando pelo roxo, até o azul, complementados por nuances de branco. As cores selecionadas são:
+
+- #D90DA2 (Rosa) e #BF17B4, #9D21BF (Roxo): Aplicadas a botões e elementos visuais que exigem maior destaque. Variantes mais claras ou escuras dessas tonalidades podem ser utilizadas conforme necessário, mantendo a coerência dentro da paleta proposta.
+- #2F3659 (Azul): Ideal para textos, proporcionando contraste adequado e assegurando legibilidade em diversos fundos.
+- #F2F2F2 (Branco): Utilizado como cor de fundo, o branco oferece uma base neutra, equilibrando as cores vibrantes da paleta e garantindo clareza e foco nos elementos destacados.
+- #8CD918 (Verde) e #EA0606 (Vermelho): Utilizadas para detalhes que exigem alto contraste e atenção visual.
+
+As escolhas de cores foram cuidadosamente avaliadas para garantir conformidade com as diretrizes de acessibilidade, assegurando que todos os usuários tenham uma experiência visual adequada. Testes de acessibilidade foram realizados com base nas diretrizes WCAG (Web Content Accessibility Guidelines) para garantir que o design atenda aos padrões recomendados.
+
+## Diretrizes e Regras de Estilo
+
+As diretrizes a seguir visam assegurar uma aplicação consistente e acessível das cores selecionadas no projeto, respeitando as variações tonais permitidas:
+
+Paleta de Cores Principal:
+
+1. #D90DA2 (Rosa), #BF17B4 e #9D21BF (Roxo):
+- Aplicação: Devem ser usadas para elementos que exigem destaque, como botões, ícones de ação e outros elementos interativos.
+- Variações: Podem ser aplicadas em versões mais claras ou escuras, desde que mantenham o contraste necessário com o fundo e os elementos adjacentes.
+- Conformidade: Garantir que a variação tonal seja aplicada de forma que mantenha a legibilidade e o foco visual, especialmente em botões ou textos sobrepostos.
+
+2. #2F3659 (Azul):
+- Aplicação: Deve ser usado principalmente para textos, links e títulos.
+- Variações: Versões mais claras ou escuras podem ser usadas para subtítulos, legendas ou outros textos de menor destaque.
+- Conformidade: Assegurar que o contraste entre o texto azul e o fundo (geralmente branco) atenda às diretrizes WCAG, com um mínimo de 4.5:1 para textos normais e 3:1 para textos grandes.
+
+3. #F2F2F2 (Branco):
+- Aplicação: Usado como cor de fundo principal para o site e interfaces.
+- Variações: Podem incluir tons ligeiramente mais escuros para áreas específicas, como seções destacadas ou cartões, para criar separação visual.
+- Conformidade: A cor branca deve fornecer um contraste adequado com os elementos coloridos sobrepostos, mantendo a legibilidade e clareza.
+
+4. #8CD918 (Verde) e #EA0606 (Vermelho):
+- Aplicação: Destinadas a detalhes que requerem alto contraste e visibilidade, como indicadores de status, alertas e avisos.
+- Variações: Podem ser usadas em tons mais claros ou escuros para destacar diferentes níveis de importância ou urgência.
+- Conformidade: Verifique sempre o contraste para garantir que o uso dessas cores em fundos claros ou escuros mantenha a acessibilidade visual e a eficácia da comunicação.
+
+## Recursos e Ferramentas
+
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/): Ferramenta utilizada para verificar a conformidade de contraste com as diretrizes de acessibilidade WCAG, assegurando que a combinação de cores no design atenda aos padrões de legibilidade.
+- [Adobe Color](https://color.adobe.com/pt/create/image): Ferramenta utilizada para criar e ajustar paletas de cores, permitindo a harmonização das tonalidades de forma eficaz e visualmente atraente.
+
