@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    TESTE 
+
+    <ul>
+         {% for meta in metas %}
+        <li> {{ meta.id }} - {{ meta.nome }} 
+        <a href="{% url 'editar' meta.id %}" > Editar </a>  </li><a 
+        href="{% url 'delete' meta.id %}">Deletar</a>
+        {% endfor %}
+
+
+
+    </ul>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>
