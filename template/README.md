@@ -100,8 +100,44 @@ As diretrizes a seguir visam assegurar uma aplicação consistente e acessível 
 - [Adobe Color](https://color.adobe.com/pt/create/image): Ferramenta utilizada para criar e ajustar paletas de cores, permitindo a harmonização das tonalidades de forma eficaz e visualmente atraente.
 - [Google Fonts](https://fonts.google.com/): Ferramenta utilizada para a seleção e verificação da fonte, permitindo testar diferentes estilos e tamanhos.
 
+## Anexos
+
+A seguir, encontram-se exemplos práticos que ilustram a aplicação das diretrizes de cores descritas nesta documentação. Esses exemplos foram desenvolvidos utilizando os templates prontos e disponibilizados gratuitamente no [Creative Tim](https://www.creative-tim.com/). Os mesmos servem para verificar a harmonia das cores escolhidas em diferentes contextos visuais. Os mockups fornecem uma visão clara de como os elementos de design, incluindo a paleta de cores, tipografia e componentes do Bootstrap, se integram para criar uma interface coesa e visualmente atraente.
+
+### Soft UI Dashboard Django:
+- **Desenvolvido por:** app-generator
+- **Link para acesso:** [Soft UI Dashboard Django](https://www.creative-tim.com/product/soft-ui-dashboard-django#)
+- **Documentação:** [GitHub - django-admin-soft-dashboard](https://github.com/app-generator/django-admin-soft-dashboard)
+
+#### Mockup
+
+<div align="center">
+    <img alt="A imagem refere-se a um dashboard com uma barra de navegação vertical a esquerda, e gráficos e dados a diretia." height="235" src="../template/image/mockups/dashboard_django/dashboard_overview.png">
+    <img alt="A imagem refere-se um tela de pagamento, incluindo um desenho de cartão e dados dos clientes" height="235" src="../template/image/mockups/dashboard_django/payment_mockup.png">
+</div>
+
+*Descrição*: Este mockup mostra a visão geral do painel de controle e tela para pagamento utilizando o template Soft UI Dashboard Django.
+
+### Soft UI Design System:
+- **Desenvolvido por:** Creative Tim
+- **Link para acesso:** [Soft UI Design System](https://www.creative-tim.com/product/soft-ui-design-system)
+- **Documentação:** [GitHub - Soft UI Design System](https://github.com/creativetimofficial/soft-ui-design-system)
+
+#### Mockup
+
+<div align="center">
+    <img alt="A imagem refere-se a um dashboard com uma barra de navegação vertical a esquerda, e gráficos e dados a diretia." height="235" src="../template/image/mockups/design_system/home_overview.png">
+    <img alt="A imagem refere-se um tela de pagamento, incluindo um desenho de cartão e dados dos clientes" height="235" src="../template/image/mockups/design_system/information_mockup.png">
+</div>
+
+*Descrição*: Este mockup mostra a visão geral do site e informações utilizando o template Soft UI Design System.
+
+
 ## Referências
 
 [1] "Bootstrap v5.0 Documentation". Disponível em:
 https://getbootstrap.com/docs/5.0/getting-started/introduction/
+
+[2] "Creative Tim". Disponível em:
+https://www.creative-tim.com/
 
