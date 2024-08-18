@@ -1,43 +1,41 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate
+from django.views.generic import TemplateView, FormView
 from .forms import CustomUserCreationForm, LoginForm
+from .permissions import UserIsOwnerMixin
 
 
-@login_required
-def home(request):
-    return render(request, 'home.html')
+class HomeView(LoginRequiredMixin, TemplateView):
+    template_name = 'teste_home.html'
 
 
-def signup(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            login(request, user)
-            return redirect('dashboard')
-    else:
-        form = CustomUserCreationForm()
+class SignupView(FormView):
+    template_name = 'teste_signup.html'
+    form_class = CustomUserCreationForm
+    success_url = '/'
 
-    return render(request, 'signup.html', {'form': form})
+    def form_valid(self, form):
+        user = form.save()
+        login(self.request, user)
+        return super().form_valid(form)
 
 
-def custom_login_view(request):
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
+class CustomLoginView(FormView):
+    template_name = 'teste_login.html'
+    form_class = LoginForm
+    success_url = '/'
 
-            user = authenticate(request, username=email, password=password)
+    def form_valid(self, form):
+        email = form.cleaned_data['email']
+        password = form.cleaned_data['password']
 
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                messages.error(request, 'Email ou senha incorretos')
-    else:
-        form = LoginForm()
-
-    return render(request, 'login.html', {'form': form})
+        user = authenticate(self.request, username=email, password=password)
+        if user is not None:
+            login(self.request, user)
+            return redirect(self.get_success_url())
+        else:
+            messages.error(self.request, 'Email ou senha incorretos')
+            return self.form_invalid(form)

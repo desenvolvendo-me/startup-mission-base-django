@@ -1,9 +1,9 @@
 from django.contrib import admin
 from django.urls import path, include
-from user.views import home
+from user.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),
+    path('', HomeView.as_view(), name='home'),
     path('', include('user.urls'))
 ]
