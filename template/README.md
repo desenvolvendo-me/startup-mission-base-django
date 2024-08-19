@@ -108,12 +108,13 @@ A seguir, encontram-se exemplos práticos que ilustram a aplicação das diretri
 - **Desenvolvido por:** app-generator
 - **Link para acesso:** [Soft UI Dashboard Django](https://www.creative-tim.com/product/soft-ui-dashboard-django#)
 - **Documentação:** [GitHub - django-admin-soft-dashboard](https://github.com/app-generator/django-admin-soft-dashboard)
+- **Modelagem**: [Figma - Soft UI Design System](https://www.figma.com/design/zouGcYYZL6w3ZVoaOWvedy/Soft-UI-Dashboard-Free-(Community)?node-id=0-262&t=2jHHwfNeQLeiBLy6-0)
 
 #### Mockup
 
 <div align="center">
-    <img alt="A imagem refere-se a um dashboard com uma barra de navegação vertical a esquerda, e gráficos e dados a diretia." height="235" src="../template/image/mockups/dashboard_django/dashboard_overview.png">
-    <img alt="A imagem refere-se um tela de pagamento, incluindo um desenho de cartão e dados dos clientes" height="235" src="../template/image/mockups/dashboard_django/payment_mockup.png">
+    <img alt="Dashboard com uma barra de navegação vertical à esquerda, gráficos e dados ilustrativos à direita." height="235" src="../template/image/mockups/dashboard_django/dashboard_overview.png">
+    <img alt="Tela de pagamento que incluindo um desenho de cartão e dados dos clientes." height="235" src="../template/image/mockups/dashboard_django/payment_mockup.png">
 </div>
 
 *Descrição*: Este mockup mostra a visão geral do painel de controle e tela para pagamento utilizando o template Soft UI Dashboard Django.
@@ -126,8 +127,8 @@ A seguir, encontram-se exemplos práticos que ilustram a aplicação das diretri
 #### Mockup
 
 <div align="center">
-    <img alt="A imagem refere-se a um dashboard com uma barra de navegação vertical a esquerda, e gráficos e dados a diretia." height="235" src="../template/image/mockups/design_system/home_overview.png">
-    <img alt="A imagem refere-se um tela de pagamento, incluindo um desenho de cartão e dados dos clientes" height="235" src="../template/image/mockups/design_system/information_mockup.png">
+    <img alt="Template de uma home com informações de quantidade de objetos incluso em seu pacote" height="235" src="../template/image/mockups/design_system/home_overview.png">
+    <img alt="Cards com informações referente ao template" height="235" src="../template/image/mockups/design_system/information_mockup.png">
 </div>
 
 *Descrição*: Este mockup mostra a visão geral do site e informações utilizando o template Soft UI Design System.
