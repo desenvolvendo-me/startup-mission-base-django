@@ -26,17 +26,20 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['name']
 
-    # Adicionando related_name para evitar conflitos com o modelo padrão de User
+
     groups = models.ManyToManyField(
         'auth.Group',
-        related_name='customuser_groups',  # Nome único para evitar colisão
+        related_name='customuser_groups',
         blank=True
     )
     user_permissions = models.ManyToManyField(
         'auth.Permission',
-        related_name='customuser_permissions',  # Nome único para evitar colisão
+        related_name='customuser_permissions',
         blank=True
     )
+
+
+
 
     def __str__(self):
         return self.email
