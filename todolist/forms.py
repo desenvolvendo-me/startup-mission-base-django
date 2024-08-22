@@ -4,4 +4,8 @@ from todolist.models import Meta
 class MetaForm(forms.ModelForm):
     class Meta:
         model = Meta
-        fields = '__all__'    
+        fields = '__all__'
+
+class TaskForm(forms.ModelForm):
+
+    class Task:

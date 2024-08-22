@@ -1,9 +1,17 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AbstractUser
 
 class Meta(models.Model):
+    STATUS_CHOICES = [
+        ('executando', 'Executando'),
+        ('desistiu', 'Desistiu'),
+        ('concluido', 'Concluído'),
+    ]
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True, null=True)
+    data_inicio = models.DateField()
+    previsao_conclusao = models.DateField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='executando')
     
     def __str__(self):
         return f"{self.nome} {self.descricao}"
@@ -44,3 +52,9 @@ class Task(models.Model):
     def __str__(self):
         return str(self.name)    
 
+class CustomUser(AbstractUser):
+    # O campo ativo é usado para verificar se o usuário está ativo.
+    ativo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.username
