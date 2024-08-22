@@ -1,0 +1,29 @@
+{% extends "base_generic.html" %}
+
+{% block title %}
+  {% if task %}Editar Task{% else %}Nova Task{% endif %}
+{% endblock %}
+
+{% block content %}
+  <div class="container mt-5">
+    <h2 class="mb-4">
+      {% if task %}
+        Editar Task: {{ task.name }}
+      {% else %}
+        Nova Task
+      {% endif %}
+    </h2>
+
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+
+      <div class="mt-4">
+        <button type="submit" class="btn btn-primary">
+          {% if task %}Atualizar{% else %}Criar{% endif %}
+        </button>
+        <a href="{% if task %}{% url 'task_detail' task.pk %}{% else %}{% url 'task_list' %}{% endif %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
