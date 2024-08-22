@@ -1,9 +1,9 @@
 from django.urls import reverse_lazy
-from django.views.generic import DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
-from .models import Meta
+from .models import Meta, Task
 from .forms import MetaForm, TaskForm
 
 
@@ -57,8 +57,16 @@ def delete(request, id):
     meta.delete()
     return redirect(home)
 
-# READ, DELETE, UPDATE - Task
+# CREATE, READ, DELETE, UPDATE - Task
 # Details meta/task;
+
+class TaskCreateView(CreateView):
+    model = Task
+    form_class = TaskForm
+    template_name = 'task_form.html'
+
+    def get_success_url(self):
+        return reverse_lazy('task_detail', kwargs={'pk': self.object.pk})
 
 #READ: Detalhes de uma tarefa específica:
 class TaskDetailView(DetailView):
