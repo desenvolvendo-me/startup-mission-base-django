@@ -1,5 +1,5 @@
 from django import forms
-from todolist.models import Meta
+from todolist.models import Meta, Task
 
 class MetaForm(forms.ModelForm):
     class Meta:
@@ -7,5 +7,6 @@ class MetaForm(forms.ModelForm):
         fields = '__all__'
 
 class TaskForm(forms.ModelForm):
-
-    class Task:
+    class Meta:
+        model = Task
+        fields = ['name', 'meta', 'description', 'is_active', 'user']
