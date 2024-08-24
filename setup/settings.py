@@ -155,5 +155,12 @@ else:
 
 # LOGIN
 
-LOGIN_URL = '/login'
+LOGIN_URL = 'user/login'
 LOGIN_REDIRECT_URL = 'home'
+
+print(f"STRIPE_PUBLIC_KEY: {env('STRIPE_PUBLIC_KEY', default=None)}")
+print(f"STRIPE_SECRET_KEY: {env('STRIPE_SECRET_KEY', default=None)}")
+
+# Configuração das chaves do Stripe
+STRIPE_PUBLIC_KEY=env('STRIPE_PUBLIC_KEY')
+STRIPE_SECRET_KEY=env('STRIPE_SECRET_KEY')

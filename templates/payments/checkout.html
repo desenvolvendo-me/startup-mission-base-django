@@ -22,10 +22,15 @@
         </div>
       </div>
       <form action="/create-checkout-session" method="POST">
-        <!-- Add a hidden field with the lookup_key of your Price -->
-        <input type="hidden" name="lookup_key" value="{{PRICE_LOOKUP_KEY}}" />
+        <!-- Adicione um campo oculto com o lookup_key do Preço -->
+        <input type="hidden" name="lookup_key" value="{{ lookup_key }}" />
         <button id="checkout-and-portal-button" type="submit">Checkout</button>
       </form>
     </section>
+
+    <!-- Inicialize o Stripe com a chave pública -->
+    <script>
+      var stripe = Stripe("{{ stripe_public_key }}");
+    </script>
   </body>
 </html>
