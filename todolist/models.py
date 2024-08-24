@@ -12,6 +12,13 @@ class Meta(models.Model):
     data_inicio = models.DateField()
     previsao_conclusao = models.DateField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='executando')
+    user=models.ForeignKey(
+        to=User,
+        on_delete=models.CASCADE,
+        null=True,
+        blank=False,
+        related_name='user_meta'
+    )
     
     def __str__(self):
         return f"{self.nome} {self.descricao}"
@@ -52,9 +59,3 @@ class Task(models.Model):
     def __str__(self):
         return str(self.name)    
 
-class CustomUser(AbstractUser):
-    # O campo ativo é usado para verificar se o usuário está ativo.
-    ativo = models.BooleanField(default=True)
-
-    def __str__(self):
-        return self.username

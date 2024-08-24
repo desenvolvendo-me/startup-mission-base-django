@@ -4,9 +4,9 @@ from todolist.models import Meta, Task
 class MetaForm(forms.ModelForm):
     class Meta:
         model = Meta
-        fields = '__all__'
+        exclude = ['user',]
 
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['name', 'meta', 'description', 'is_active', 'user']
+        fields = ['name', 'meta', 'description']

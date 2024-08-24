@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.shortcuts import render, redirect
@@ -6,26 +7,28 @@ from django.http import HttpResponseForbidden
 from .models import Meta, Task
 from .forms import MetaForm, TaskForm
 
+'''
+Neste codigo comentado (#) está uma proposta de alteração para a função home.
+O criar_meta ja verifica se o usuario está ativo, e se sim, possibilida o uso da ferramenta.
+Minha dúvida é: Como altera-lá e atualizar as outras também.
+'''
 
-@login_required
+
+
 def criar_meta(request):
-    if not request.user.is_active:
-        return HttpResponseForbidden("Usuário inativo não pode criar metas.")
-    '''
-    Neste codigo comentado (#) está uma proposta de alteração para a função home.
-    O criar_meta ja verifica se o usuario está ativo, e se sim, possibilida o uso da ferramenta.
-    Minha dúvida é: Como altera-lá e atualizar as outras também.
-    '''
-    # if request.method == 'POST':
-    #     form = MetaForm(request.POST)
-    #     if form.is_valid():
-    #         meta = form.save(commit=False)
-    #         meta.usuario = request.user
-    #         meta.save()
-    #         return redirect('lista_metas')
-    # else:
-    #     form = MetaForm()
-    # return render(request, 'metas/criar_meta.html', {'form': form})
+    if request.user.is_active:
+        if request.method == 'POST':
+            form = MetaForm(request.POST)
+            if form.is_valid():
+                meta = form.save(commit=False)
+                meta.user = request.user
+                meta.save()
+                return redirect('home')
+        else:
+            form = MetaForm()
+        return render(request, 'metas/criar_meta.html', {'form': form})
+    return HttpResponseForbidden("Usuário inativo não pode criar metas.")
+
 
 def home(request):
     metas = Meta.objects.all()
@@ -35,7 +38,7 @@ def home(request):
             form.save()
             return redirect("home")
     else:
-        form = MetaForm()    
+        form = MetaForm()
     return render(request, "index.html", {"metas": metas, "form": form})
 
 
@@ -57,6 +60,7 @@ def delete(request, id):
     meta.delete()
     return redirect(home)
 
+
 # CREATE, READ, DELETE, UPDATE - Task
 # Details meta/task;
 
@@ -68,7 +72,7 @@ class TaskCreateView(CreateView):
     def get_success_url(self):
         return reverse_lazy('task_detail', kwargs={'pk': self.object.pk})
 
-#READ: Detalhes de uma tarefa específica:
+
 class TaskDetailView(DetailView):
     # Exibe os detalhes de uma tarefa específica.
     # Usa DetailView, que já cuida de toda a lógica de exibição de detalhes.
@@ -77,6 +81,7 @@ class TaskDetailView(DetailView):
     model = Task
     template_name = 'task_detail.html'
     context_object_name = 'task'
+
 
 #UPDATE: Atualizar uma tarefa existente:
 class TaskUpdateView(UpdateView):
@@ -91,6 +96,7 @@ class TaskUpdateView(UpdateView):
 
     def get_success_url(self):
         return reverse_lazy('task_detail', kwargs={'pk': self.object.pk})
+
 
 #DELETE: Excluir uma tarefa
 class TaskDeleteView(DeleteView):
