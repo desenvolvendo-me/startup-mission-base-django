@@ -9,4 +9,4 @@ class MetaForm(forms.ModelForm):
 class TaskForm(forms.ModelForm):
     class Meta:
         model = Task
-        fields = ['name', 'meta', 'description']
+        fields = '__all__'

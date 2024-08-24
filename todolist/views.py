@@ -1,5 +1,6 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
@@ -26,7 +27,7 @@ def criar_meta(request):
                 return redirect('home')
         else:
             form = MetaForm()
-        return render(request, 'metas/criar_meta.html', {'form': form})
+        return render(request, 'criar_meta.html', {'form': form})
     return HttpResponseForbidden("Usuário inativo não pode criar metas.")
 
 
@@ -68,9 +69,10 @@ class TaskCreateView(CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'task_form.html'
-
+    context_object_name = 'task'
     def get_success_url(self):
-        return reverse_lazy('task_detail', kwargs={'pk': self.object.pk})
+        return reverse('task_detail', kwargs={'pk': self.object.pk})
+
 
 
 class TaskDetailView(DetailView):
@@ -90,7 +92,7 @@ class TaskUpdateView(UpdateView):
     # fields: Especifica quais campos da Task serão exibidos no formulário de atualização.
     # get_success_url: Redireciona para a página de detalhes da tarefa após a atualização bem-sucedida.
     model = Task
-    fields = ['name', 'meta', 'description', 'is_active', 'user']
+    fields = ['name', 'meta', 'description', 'is_active']
     template_name = 'task_form.html'
     context_object_name = 'task'
 
@@ -100,10 +102,10 @@ class TaskUpdateView(UpdateView):
 
 #DELETE: Excluir uma tarefa
 class TaskDeleteView(DeleteView):
-    # Permite excluir uma tarefa.
-    # Usa DeleteView, que já cuida de toda a lógica de exclusão.
-    # success_url: Redireciona para uma lista de tarefas após a exclusão bem-sucedida.
     model = Task
-    template_name = 'Task_confirm_delete.html'
     context_object_name = 'task'
     success_url = reverse_lazy('task_list')
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(self.request, 'Sua tarefa foi excluída com sucesso.')
+        return super().delete(request, *args, **kwargs)

@@ -1,16 +1,25 @@
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 
+STATUS_CHOICES = [
+    ('executando', 'Executando'),
+    ('desistiu', 'Desistiu'),
+    ('concluido', 'Concluído'),
+]
+
+
 class Meta(models.Model):
-    STATUS_CHOICES = [
-        ('executando', 'Executando'),
-        ('desistiu', 'Desistiu'),
-        ('concluido', 'Concluído'),
-    ]
+
     nome = models.CharField(max_length=100)
     descricao = models.TextField(blank=True, null=True)
-    data_inicio = models.DateField()
-    previsao_conclusao = models.DateField()
+    data_inicio = models.DateTimeField(
+        auto_now_add=True,
+        null=True,
+        blank=True) # O null e o teste é apenas para teste.
+    previsao_conclusao = models.DateField(
+        null=True,
+        blank=True
+    )
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='executando')
     user=models.ForeignKey(
         to=User,
@@ -34,8 +43,8 @@ class Task(models.Model):
     meta=models.ForeignKey(
         Meta, 
         on_delete=models.CASCADE,
-        null=False,
-        blank=False,
+        null=True,
+        blank=True,
         related_name='meta'
     )
 
@@ -43,9 +52,14 @@ class Task(models.Model):
         blank=False,
         null=False
     )
-
+    created_at: models.DateTimeField(auto_now_add=True)
     is_active=models.BooleanField(
         default=True
+    )
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default='executando'
     )
 
     user=models.ForeignKey(
