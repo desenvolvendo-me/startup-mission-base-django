@@ -35,3 +35,31 @@ Aqui está um exemplo básico de como iniciar uma nova página que utiliza o `ba
 <p>Este é um exemplo de como usar a base de estilos configurada no base.html.</p>
 {% endblock %}
 ```
+## Estrutura das Páginas de Registro e Login
+
+No contexto deste projeto, a maioria das páginas se baseia no template `base.html` para manter uma consistência visual e estrutural. No entanto, as páginas de registro e login são exceções a essa regra. Elas não utilizam esse template, devido à necessidade de uma interface mais simplificada, limpa e direta, que facilita o foco do usuário na tarefa de autenticação. Além de não precisar das ferramentes disponibilizadas na base de layout. 
+
+#### Explicação das configurações de URL e View
+
+As páginas de registro e login já estão prontas e organizadas na pasta `accounts`. Para que essas páginas sejam acessíveis através do navegador, é necessário configurar as rotas e as views que irão processas as requisições HTTP. Abaixo segue um modelo de configuração.
+
+1. **Configurações das URLs (`urls.py`):**
+```django
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('login/', views.login_view, name='login'),
+    path('register/', views.register_view, name='register'),
+]
+```
+2. **Definição das Views (`views.py`):**
+```django
+from django.shortcuts import render
+
+def login_view(request):
+    return render(request, 'login.html')
+
+def register_view(request):
+    return render(request, 'register.html')
+```
