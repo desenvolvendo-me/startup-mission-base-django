@@ -28,3 +28,15 @@ function toggleSidenav() {
     iconSidenav.classList.remove('d-none');
   }
 }
+
+// Update Breadcrumb Dynamically
+document.addEventListener("DOMContentLoaded", function() {
+  var navLinks = document.querySelectorAll('.nav-link');
+  navLinks.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault();
+      var pageName = this.getAttribute('data-page');
+      document.getElementById('breadcrumb-page').textContent = '/ ' + pageName;
+    });
+  });
+});
