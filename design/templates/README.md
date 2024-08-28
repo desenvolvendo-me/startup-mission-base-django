@@ -63,3 +63,29 @@ def login_view(request):
 def register_view(request):
     return render(request, 'register.html')
 ```
+
+## Criação e Atualização da Sidebar
+
+A sidebar (barra lateral) é um componente essencial para a navegação do usuário na aplicação. Ela fornece uma visão geral das principais seções e páginas, além de atuar como uma rota de fuga, caso queira retornar a página principal.
+
+#### Estrutura da Sidebar
+
+A sidebar é gerada dinamicamente usando JavaScript com base em uma lista de tópicos. Cada tópico é representado por um objeto que contém informações como o link, ícone e o nome da página. 
+
+#### Adicionando Novos Itens
+
+Para adicionar novos itens à siderbar, siga estas etapas:
+
+1. **Atualize o Array `topics`:**
+
+Adicione um novo objeto ao array `topics` com as informações do novo item. **Certifique-se de preencher todos os campos:** o `link` para link da página, o `iconClass` para o ícone desejado, e o `page` para o nome da página que aparecerá na sidebar. Exemplo: 
+
+```javascript
+const topics = [
+  { href: "nova-pagina.html", iconClass: "bi bi-newspaper", link: "#", page: "Nova pagina" } 
+];
+```
+
+2. **Verifique a Biblioteca de Ícones:** 
+
+Está sendo utilizado ícones da [Bootstrap Icons](https://icons.getbootstrap.com/), assegure-se que a classe do ícone (`iconClass`) esteja correta. 
