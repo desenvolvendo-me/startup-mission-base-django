@@ -28,6 +28,11 @@ class CustomLoginView(FormView):
     form_class = LoginForm
     success_url = '/'
 
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(self.get_success_url())
+        return super().dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password']
