@@ -5,7 +5,7 @@ from user.views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('todolist/', include('todolist.urls'))
+    path('todolist/', include('todolist.urls')),
     path('', HomeView.as_view(), name='home'),
     path('', include('user.urls'))
 ]

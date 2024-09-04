@@ -95,6 +95,11 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
+AUTH_USER_MODEL = 'user.CustomUser'
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
 
 
 # Password validation

@@ -9,7 +9,7 @@ from .permissions import UserIsOwnerMixin
 
 
 class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'teste_home.html'
+    template_name = 'index.html'
 
 
 class SignupView(FormView):
@@ -32,7 +32,7 @@ class CustomLoginView(FormView):
         email = form.cleaned_data['email']
         password = form.cleaned_data['password']
 
-        user = authenticate(self.request, username=email, password=password)
+        user = authenticate(self.request, email=email, password=password)
         if user is not None:
             login(self.request, user)
             return redirect(self.get_success_url())

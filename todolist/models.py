@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User, AbstractUser
 
@@ -15,14 +16,14 @@ class Meta(models.Model):
     data_inicio = models.DateTimeField(
         auto_now_add=True,
         null=True,
-        blank=True) # O null e o teste é apenas para teste.
+        blank=True)
     previsao_conclusao = models.DateField(
         null=True,
         blank=True
     )
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='executando')
     user=models.ForeignKey(
-        to=User,
+        to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         null=True,
         blank=False,
@@ -63,7 +64,7 @@ class Task(models.Model):
     )
 
     user=models.ForeignKey(
-        to=User,
+        to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         null=True,
         blank=False,

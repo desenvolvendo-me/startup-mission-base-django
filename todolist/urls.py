@@ -1,12 +1,11 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import home, editar, update, delete, TaskCreateView, TaskDetailView, TaskUpdateView, TaskDeleteView
+from .views import *
 
 urlpatterns = [
-    path('', home, name="home"),
-    path('editar/<int:id>', editar, name='editar'),
-    path('update/<int:id>', update, name='update'),
-    path('delete/<int:id>', delete, name='delete'),
+    path('', HomeView.as_view(), name="home"),
+    path('editar/<int:id>', EditarMetaView.as_view(), name='editar'),
+    path('delete/<int:id>', DeletarMetaView.as_view(), name='delete'),
     path('task/new/', TaskCreateView.as_view(), name='task_create'),
     path('task/<int:pk>/', TaskDetailView.as_view(), name='task_detail'),
     path('task/<int:pk>/edit/', TaskUpdateView.as_view(), name='task_update'),

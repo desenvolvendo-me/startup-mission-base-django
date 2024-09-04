@@ -1,10 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy, reverse
-from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, UpdateView, DeleteView, ListView
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+
+from user.permissions import UserIsOwnerMixin
 from .models import Meta, Task
 from .forms import MetaForm, TaskForm
 
@@ -16,56 +18,69 @@ Minha dúvida é: Como altera-lá e atualizar as outras também.
 
 
 
-def criar_meta(request):
-    if request.user.is_active:
-        if request.method == 'POST':
-            form = MetaForm(request.POST)
-            if form.is_valid():
-                meta = form.save(commit=False)
-                meta.user = request.user
-                meta.save()
-                return redirect('home')
+class CriarMetaView(LoginRequiredMixin, UserIsOwnerMixin, CreateView):
+    model = Meta
+    form_class = MetaForm
+    template_name = 'criar_meta.html'
+    success_url = reverse_lazy('home')
+
+    def form_valid(self, form):
+        if self.request.user.is_active:
+            form.instance.user = self.request.user
+            return super().form_valid(form)
         else:
-            form = MetaForm()
-        return render(request, 'criar_meta.html', {'form': form})
-    return HttpResponseForbidden("Usuário inativo não pode criar metas.")
+            return HttpResponseForbidden("Usuário inativo não pode criar metas.")
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_active:
+            return HttpResponseForbidden("Usuário inativo não pode criar metas.")
+        return super().get(request, *args, **kwargs)
 
 
-def home(request):
-    metas = Meta.objects.all()
-    if request.method == 'POST':
-        form = MetaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("home")
-    else:
-        form = MetaForm()
-    return render(request, "index.html", {"metas": metas, "form": form})
+
+class HomeView(LoginRequiredMixin, UserIsOwnerMixin, ListView, CreateView):
+    model = Meta
+    template_name = "index.html"
+    context_object_name = "metas"
+    form_class = MetaForm
+    success_url = reverse_lazy('home')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = self.get_form()
+        return context
+
+    def form_valid(self, form):
+        return super().form_valid(form)
 
 
-def editar(request, id):
-    meta = Meta.objects.get(id=id)
-    return render(request, "update.html", {"meta": meta})
+
+class EditarMetaView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
+    model = Meta
+    form_class = MetaForm
+    template_name = 'update.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        return Meta.objects.get(id=self.kwargs['id'])
 
 
-def update(request, id):
-    nome = request.POST.get("nome")
-    meta = Meta.objects.get(id=id)
-    meta.nome = nome
-    meta.save()
-    return redirect(home)
 
 
-def delete(request, id):
-    meta = Meta.objects.get(id=id)
-    meta.delete()
-    return redirect(home)
+class DeletarMetaView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
+    model = Meta
+    template_name = 'confirm_delete.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self, queryset=None):
+        return Meta.objects.get(id=self.kwargs['id'])
+
 
 
 # CREATE, READ, DELETE, UPDATE - Task
 # Details meta/task;
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, UserIsOwnerMixin, CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'task_form.html'
@@ -75,7 +90,7 @@ class TaskCreateView(CreateView):
 
 
 
-class TaskDetailView(DetailView):
+class TaskDetailView(LoginRequiredMixin, UserIsOwnerMixin, DetailView):
     # Exibe os detalhes de uma tarefa específica.
     # Usa DetailView, que já cuida de toda a lógica de exibição de detalhes.
     # template_name: Especifica o template que será usado para exibir os detalhes da tarefa.
@@ -86,7 +101,7 @@ class TaskDetailView(DetailView):
 
 
 #UPDATE: Atualizar uma tarefa existente:
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
     # Permite atualizar uma tarefa existente.
     # Usa UpdateView, que cuida da lógica de edição e atualização de um objeto.
     # fields: Especifica quais campos da Task serão exibidos no formulário de atualização.
@@ -101,7 +116,7 @@ class TaskUpdateView(UpdateView):
 
 
 #DELETE: Excluir uma tarefa
-class TaskDeleteView(DeleteView):
+class TaskDeleteView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
     model = Task
     context_object_name = 'task'
     success_url = reverse_lazy('task_list')
