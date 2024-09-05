@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -39,3 +40,4 @@ class CustomLoginView(FormView):
         else:
             messages.error(self.request, 'Email ou senha incorretos')
             return self.form_invalid(form)
+
