@@ -46,10 +46,31 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'todolist',
     'user',
     'payments',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# Configuração da Google OAuth
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'APP': {
+#             'client_id': 'SUA_GOOGLE_CLIENT_ID',
+#             'secret': 'SUA_GOOGLE_CLIENT_SECRET',
+#             'key': ''
+#         }
+#     }
+# }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,6 +78,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    "allauth.account.middleware.AccountMiddleware",
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -79,6 +101,7 @@ TEMPLATES = [
     },
 ]
 
+
 WSGI_APPLICATION = 'setup.wsgi.application'
 
 
@@ -95,9 +118,10 @@ DATABASES = {
         'PORT': env('DB_PORT'),
     }
 }
-AUTH_USER_MODEL = 'user.CustomUser'
+
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 
@@ -159,5 +183,3 @@ else:
 
 # LOGIN
 
-LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL = 'home'
