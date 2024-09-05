@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    TESTE 
+<!-- Aqui estava dando erro então coloquei uma condição.
+    Sempre lembrar disso. Pois caso não tenha nenhum dados no Database a aplicação quebra.
+    Então temos sempre que colocar uma verificação.
+
+    -->
+    <ul>
+        {% if meta in metas%}
+             {% for meta in metas %}
+            <li> {{ meta.id }} - {{ meta.nome }}
+            <a href="{% url 'editar' meta.id %}" > Editar </a>  </li><a
+            href="{% url 'delete' meta.id %}">Deletar</a>
+            {% endfor %}
+        {% else %}
+            <li>There is no Meta</li>
+
+    {% endif %}
+
+
+    </ul>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Salvar</button>
+    </form>
+
+</body>
+</html>
