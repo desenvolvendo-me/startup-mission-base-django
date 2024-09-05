@@ -183,3 +183,5 @@ else:
 
 # LOGIN
 
+LOGIN_URL = '/accounts/login'
+
