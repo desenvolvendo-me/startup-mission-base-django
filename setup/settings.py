@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'todolist',
     'user',
-    'payments',
+    'design',
+    'payments'
 ]
 
 SITE_ID = 1
