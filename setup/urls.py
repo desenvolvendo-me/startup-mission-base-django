@@ -9,5 +9,5 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('todolist/', include('todolist.urls')),
     path('', HomeView.as_view(), name='home'),
-
+    path('reports/', include('reports.urls')),
 ]

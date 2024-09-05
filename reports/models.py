@@ -1,8 +1,5 @@
 from django.db import models
 
-# Create your models here.
-from django.db import models
-
 # Modelo para armazenar os dados mensais
 class MonthlyData(models.Model):
     month = models.IntegerField()  # Mês representado como um número de 1 a 12
