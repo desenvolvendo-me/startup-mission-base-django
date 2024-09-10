@@ -54,7 +54,8 @@ INSTALLED_APPS = [
     'todolist',
     'user',
     'design',
-    'payments'
+    'payments',
+    'calendar_integration',
 ]
 
 SITE_ID = 1
