@@ -3,42 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Minhas Metas e Tarefas</title>
 </head>
 <body>
-    TESTE 
+    <h1>Bem-vindo, {{ user.username }}</h1>
 
-    {% if user.is_authenticated %}
-        <p>Bem-vindo, {{ user.username }}!</p>
-    {% endif %}
-
+    <h2>Minhas Metas</h2>
     <ul>
         {% if metas %}
             {% for meta in metas %}
-                <li>
-                    {{ meta.id }} - {{ meta.nome }}
-                    <a href="{% url 'editar' meta.id %}">Editar</a>
-                    <a href="{% url 'delete' meta.id %}">Deletar</a>
-                </li>
+                <li>{{ meta.nome }} - {{ meta.descricao }}</li>
             {% endfor %}
         {% else %}
             <li>Nenhuma meta encontrada.</li>
-            <li><a href="{% url 'create-meta' %}">Criar uma nova meta</a></li>
         {% endif %}
     </ul>
 
-</body>
-</html>
+    <h2>Minhas Tarefas</h2>
+    <ul>
+        {% if tasks %}
+            {% for task in tasks %}
+                <li>{{ task.name }} - {{ task.description }}</li>
+            {% endfor %}
+        {% else %}
+            <li>Nenhuma tarefa encontrada.</li>
 
+        {% endif %}
 
-
+     <a href={% url 'create-meta' %}><button > Criar nova Meta</button></a>
+     <a href={% url 'task_create' %}><button> Criar nova Tarefa</button></a>
     </ul>
-
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Salvar</button>
-    </form>
 
 </body>
 </html>

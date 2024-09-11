@@ -37,12 +37,22 @@ class CriarMetaView(LoginRequiredMixin, CreateView):
 
 
 class HomeView(LoginRequiredMixin, ListView):
-    model = Meta
+    model = Meta  # Definimos um modelo principal, mas podemos adicionar outros no contexto
     template_name = "index.html"
     context_object_name = "metas"
 
     def get_queryset(self):
+        # Retorna apenas as metas associadas ao usuário logado
         return Meta.objects.filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        # Chamamos o método base para garantir o contexto padrão
+        context = super().get_context_data(**kwargs)
+
+        # Adicionamos as tarefas ao contexto
+        context['tasks'] = Task.objects.filter(user=self.request.user)
+
+        return context
 
 
 class EditarMetaView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
@@ -67,11 +77,22 @@ class DeletarMetaView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
 # CREATE, READ, DELETE, UPDATE - Task
 # Details meta/task;
 
-class TaskCreateView(LoginRequiredMixin, UserIsOwnerMixin, CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     form_class = TaskForm
     template_name = 'task_form.html'
-    context_object_name = 'task'
+
+    def form_valid(self, form):
+        if self.request.user.is_active:
+            form.instance.user = self.request.user
+            return super().form_valid(form)
+        else:
+            return HttpResponseForbidden("Usuário inativo não pode criar metas.")
+
+    def get(self, request, *args, **kwargs):
+        if not request.user.is_active:
+            return HttpResponseForbidden("Usuário inativo não pode criar metas.")
+        return super().get(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse('task_detail', kwargs={'pk': self.object.pk})

@@ -25,7 +25,7 @@ class Meta(models.Model):
     user=models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        null=True,
+        null=False,
         blank=False,
         related_name='user_meta'
     )
@@ -66,7 +66,7 @@ class Task(models.Model):
     user=models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        null=True,
+        null=False,
         blank=False,
         related_name='user_task'
     )
