@@ -9,10 +9,6 @@ from .forms import CustomUserCreationForm, LoginForm
 from .permissions import UserIsOwnerMixin
 
 
-class HomeView(LoginRequiredMixin, TemplateView):
-    template_name = 'index.html'
-
-
 class SignupView(FormView):
     template_name = 'teste_signup.html'
     form_class = CustomUserCreationForm

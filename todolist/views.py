@@ -17,8 +17,7 @@ Minha dúvida é: Como altera-lá e atualizar as outras também.
 '''
 
 
-
-class CriarMetaView(LoginRequiredMixin, UserIsOwnerMixin, CreateView):
+class CriarMetaView(LoginRequiredMixin, CreateView):
     model = Meta
     form_class = MetaForm
     template_name = 'criar_meta.html'
@@ -37,22 +36,13 @@ class CriarMetaView(LoginRequiredMixin, UserIsOwnerMixin, CreateView):
         return super().get(request, *args, **kwargs)
 
 
-
-class HomeView(LoginRequiredMixin, UserIsOwnerMixin, ListView, CreateView):
+class HomeView(LoginRequiredMixin, ListView):
     model = Meta
     template_name = "index.html"
     context_object_name = "metas"
-    form_class = MetaForm
-    success_url = reverse_lazy('home')
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["form"] = self.get_form()
-        return context
-
-    def form_valid(self, form):
-        return super().form_valid(form)
-
+    def get_queryset(self):
+        return Meta.objects.filter(user=self.request.user)
 
 
 class EditarMetaView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
@@ -65,8 +55,6 @@ class EditarMetaView(LoginRequiredMixin, UserIsOwnerMixin, UpdateView):
         return Meta.objects.get(id=self.kwargs['id'])
 
 
-
-
 class DeletarMetaView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
     model = Meta
     template_name = 'confirm_delete.html'
@@ -74,7 +62,6 @@ class DeletarMetaView(LoginRequiredMixin, UserIsOwnerMixin, DeleteView):
 
     def get_object(self, queryset=None):
         return Meta.objects.get(id=self.kwargs['id'])
-
 
 
 # CREATE, READ, DELETE, UPDATE - Task
@@ -85,9 +72,9 @@ class TaskCreateView(LoginRequiredMixin, UserIsOwnerMixin, CreateView):
     form_class = TaskForm
     template_name = 'task_form.html'
     context_object_name = 'task'
+
     def get_success_url(self):
         return reverse('task_detail', kwargs={'pk': self.object.pk})
-
 
 
 class TaskDetailView(LoginRequiredMixin, UserIsOwnerMixin, DetailView):

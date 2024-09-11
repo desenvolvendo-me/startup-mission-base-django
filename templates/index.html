@@ -7,22 +7,29 @@
 </head>
 <body>
     TESTE 
-<!-- Aqui estava dando erro então coloquei uma condição.
-    Sempre lembrar disso. Pois caso não tenha nenhum dados no Database a aplicação quebra.
-    Então temos sempre que colocar uma verificação.
 
-    -->
+    {% if user.is_authenticated %}
+        <p>Bem-vindo, {{ user.username }}!</p>
+    {% endif %}
+
     <ul>
-        {% if meta in metas%}
-             {% for meta in metas %}
-            <li> {{ meta.id }} - {{ meta.nome }}
-            <a href="{% url 'editar' meta.id %}" > Editar </a>  </li><a
-            href="{% url 'delete' meta.id %}">Deletar</a>
+        {% if metas %}
+            {% for meta in metas %}
+                <li>
+                    {{ meta.id }} - {{ meta.nome }}
+                    <a href="{% url 'editar' meta.id %}">Editar</a>
+                    <a href="{% url 'delete' meta.id %}">Deletar</a>
+                </li>
             {% endfor %}
         {% else %}
-            <li>There is no Meta</li>
+            <li>Nenhuma meta encontrada.</li>
+            <li><a href="{% url 'create-meta' %}">Criar uma nova meta</a></li>
+        {% endif %}
+    </ul>
 
-    {% endif %}
+</body>
+</html>
+
 
 
     </ul>
