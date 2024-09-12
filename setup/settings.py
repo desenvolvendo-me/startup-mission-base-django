@@ -187,3 +187,11 @@ else:
 
 LOGIN_URL = '/accounts/login'
 
+# myproject/settings.py
+OAUTH2_PROVIDER = {
+    'SCOPES': {'calendar': 'Read/write access to Calendar'},
+    'CLIENT_ID': 'YOUR CLIENT ID',
+    'CLIENT_SECRET': 'YOUR CLIENT_SECRET',
+}
+
+GOOGLE_TOKEN_FILE = 'token.json'
