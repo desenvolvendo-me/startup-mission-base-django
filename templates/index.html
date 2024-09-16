@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid py-1 px-4">
     TESTE 
 <!-- Aqui estava dando erro então coloquei uma condição.
     Sempre lembrar disso. Pois caso não tenha nenhum dados no Database a aplicação quebra.
@@ -14,13 +11,6 @@
     -->
     {% if user.is_authenticated %}
         <p>Bem-vindo, {{ user.username }}!</p>
-
-        <!-- Botão de logout -->
-        <form method="POST" action="{% url 'account_logout' %}">
-            {% csrf_token %}
-            <button type="submit">Sair</button>
-        </form>
-
         <ul>
             {% if metas %}
                 {% for meta in metas %}
@@ -43,5 +33,5 @@
     {% else %}
         <p>Você não está autenticado. Por favor, <a href="{% url 'account_login' %}">faça login</a>.</p>
     {% endif %}
-</body>
-</html>
+</div>
+{% endblock content %}
