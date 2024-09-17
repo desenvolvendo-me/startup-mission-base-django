@@ -27,26 +27,53 @@
                   </p>
                 </div>
                 <div class="card-body">
-                  <form method="post" action="{% url 'account_signup' %}">
+                  <form method="post" action="">
                     {% csrf_token %}
+                    {% if messages %}
+                      {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }} text-center">
+                          {{ message }}
+                        </div>
+                      {% endfor %}
+                    {% endif %}
                     <label for="id_username" class="form-label">Nome do usuário</label>
                     <div class="mb-3">
                         <input type="text" class="form-control" name="username" placeholder="Nome de usuário" minlength="1" maxlength="150" required aria-invalid="true" id="id_username">
+                        {% if form.username.errors %}
+                          <div class="text-danger">
+                            {{ form.username.errors.0 }}
+                          </div>
+                        {% endif %}
                     </div>
                     
                     <label for="id_email" class="form-label">Email</label>
                     <div class="mb-3">
                         <input type="email" class="form-control" name="email" placeholder="Endereço de e-mail" maxlength="320" aria-invalid="true" id="id_email">
+                        {% if form.email.errors %}
+                          <div class="text-danger">
+                            {{ form.email.errors.0 }}
+                          </div>
+                        {% endif %}
                     </div>
                     
                     <label for="id_password1" class="form-label">Senha</label>
                     <div class="mb-3">
                         <input type="password" class="form-control" name="password1" placeholder="Senha" required aria-describedby="id_password1_helptext" id="id_password1">
+                        {% if form.password1.errors %}
+                          <div class="text-danger">
+                            {{ form.password1.errors.0 }}
+                          </div>
+                        {% endif %}
                     </div>
                     
                     <label for="id_password2" class="form-label">Confirme a senha</label>
                     <div class="mb-3">
                         <input type="password" class="form-control" name="password2" placeholder="Senha (novamente)" required id="id_password2">
+                        {% if form.password2.errors %}
+                          <div class="text-danger">
+                            {{ form.password2.errors.0 }}
+                          </div>
+                        {% endif %}
                     </div>
                     <div class="text-center">
                       <button type="submit" class="btn bg-gradient-info w-100 mt-1 mb-0">Cadastrar</button>
